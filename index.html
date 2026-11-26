@@ -51,10 +51,20 @@ ol{padding:0 20px 0 0;margin:0}ol li{margin:0 0 8px}
 ul{padding:0 18px 0 0;margin:0}
 .warn{background:#2a2616;border:1px solid #5b5320;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:13px}
 .src a{color:var(--cyan)}
-#list{position:absolute;z-index:7;inset:0;background:#0e1024;display:none;flex-direction:column}
-#list.open{display:flex}
-#list .top{padding:10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
-#list .items{overflow-y:auto;padding:8px 10px}
+#list,#near{position:absolute;z-index:7;inset:0;background:#0e1024;display:none;flex-direction:column}
+#list.open,#near.open{display:flex}
+#list .top,#near .top{padding:10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+#list .items,#near .items{overflow-y:auto;padding:8px 10px}
+#addr{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:999px;color:var(--fg);padding:6px 12px;font-size:13px}
+#nearRow{position:relative}
+.addr-dd{position:absolute;top:calc(100% + 4px);right:0;left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;z-index:9;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.addr-opt{display:block;width:100%;text-align:right;padding:9px 12px;background:none;border:0;border-bottom:1px solid var(--line);font-size:13px}
+.addr-opt:last-child{border-bottom:0}
+.addr-opt:hover,.addr-opt:active{background:var(--panel2)}
+.addr-opt span{color:var(--mut);font-size:11px}
+.addr-none{padding:10px 12px;color:var(--mut);font-size:12px}
+.dist{color:var(--cyan);font-size:12px;white-space:nowrap}
+.scale-note{padding:8px 12px;color:var(--mut);font-size:11px}
 .item{display:block;width:100%;text-align:right;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px}
 .item b{font-size:14px}.item span{font-size:12px;color:var(--mut)}
 .empty{padding:30px;text-align:center;color:var(--mut)}
@@ -66,6 +76,12 @@ ul{padding:0 18px 0 0;margin:0}
   <h1>מפת הסודות של GTA 6 <small id="sub"></small></h1>
   <div class="row" id="chRow"></div>
   <div class="row" id="catRow"></div>
+  <div class="row" id="nearRow">
+    <span class="lbl">&#128205;</span>
+    <input id="addr" placeholder="כתובת, עיר או אזור במשחק — מה שווה ליד?" autocomplete="off">
+    <button class="chip" id="addrclear" style="display:none">נקה</button>
+    <div class="addr-dd" id="addrdd" style="display:none"></div>
+  </div>
 </header>
 <main>
   <div id="map"><svg id="svg" viewBox="0 0 1400 1915" preserveAspectRatio="xMidYMid meet"></svg></div>
@@ -75,6 +91,7 @@ ul{padding:0 18px 0 0;margin:0}
   <div id="note">המפה מצוירת לפי המפה הרשמית של ליאונידה. הסמנים ברמת אזור, לא קואורדינטות מדויקות מהמשחק.</div>
   <div id="panel"><button id="close" aria-label="סגור">&times;</button><div class="hd"><h2 id="pt"></h2><div class="en" id="pe"></div><div id="ptags"></div></div><div class="bd" id="pb"></div></div>
   <div id="list"><div class="top"><b>כל המקומות לפי הסינון</b><button class="chip" id="listclose">סגור</button></div><div class="items" id="items"></div></div>
+  <div id="near"><div class="top"><b id="neartitle"></b><button class="chip" id="nearclose">סגור</button></div><div class="items" id="nearitems"></div></div>
 </main>
 </div>
 <script src="data.js"></script>
@@ -190,6 +207,7 @@ function applyFilter(){
   if(st.sel&&!visible(PLACES.find(x=>x.id===st.sel)))closePanel();
   updLabels();
   if($("list").classList.contains("open"))buildList();
+  if($("near").classList.contains("open"))buildNear();
 }
 function updLabels(){
   const k=1400/st.vb[2];
@@ -200,6 +218,7 @@ function updLabels(){
     const t=g.querySelector("text");t.style.display=(k>=2.2||g.classList.contains("sel"))?"":"none";
     const s=1/Math.max(1,Math.pow(k,.78));g.setAttribute("transform",g.getAttribute("transform").replace(/ scale\(.*\)/,"")+` scale(${s.toFixed(3)})`);
   });
+  if(anchor){const s=1/Math.max(1,Math.pow(k,.78));anchorG.setAttribute("transform",`translate(${anchor.pos[0]} ${anchor.pos[1]}) scale(${s.toFixed(3)})`);}
 }
 
 /* ---------- pan / zoom ---------- */
@@ -261,7 +280,7 @@ function select(id,fly){
   if(p.notes)h+=`<div class="warn">${esc(p.notes)}</div>`;
   h+=`<h3>מקורות</h3><div class="src">`+p.src.map(k=>`<div><a href="${SRC[k][1]}" target="_blank" rel="noopener">${SRC[k][0]}</a></div>`).join("")+"</div>";
   $("pb").innerHTML=h;$("panel").scrollTop=0;$("panel").classList.add("open");
-  $("list").classList.remove("open");
+  $("list").classList.remove("open");$("near").classList.remove("open");
   updLabels();
   if(fly)flyTo(p);
 }
@@ -287,6 +306,100 @@ function buildFilters(){
   const s=document.createElement("input");s.id="search";s.placeholder="חיפוש…";s.value=st.q;s.oninput=()=>{st.q=s.value.trim();applyFilter();};kr.appendChild(s);
   $("sub").textContent=st.ch?("עד פרק "+st.ch):"כל הפרקים";
 }
+/* ---------- nearby search: type an address / town / area, get the worthwhile places around it ---------- */
+const KM_PER_UNIT=24/1915; // rough scale: whole map ~24 km top to bottom (unofficial estimate)
+const GEOZ=[];
+function norm(s){return (s||"").toLowerCase().replace(/["'׳״`\-]/g,"").replace(/\s+/g," ").trim();}
+function titleCase(s){return s.toLowerCase().replace(/(^|[\s-])([a-z])/g,(m,p,c)=>p+c.toUpperCase());}
+GEO.townLabels.forEach(l=>GEOZ.push({name:titleCase(l[0]),kind:"עיר / אזור",pos:[l[1],l[2]]}));
+GEO.countyLabels.forEach(l=>GEOZ.push({name:titleCase(l[0]),kind:"מחוז",pos:[l[1],l[2]]}));
+const AKA={"Vice City":["ויס סיטי","וייס סיטי"],"Vice Beach":["ויס ביץ","וייס ביץ"],"Port Gellhorn":["פורט גלהורן"],"Key Lento":["קי לנטו"],"Hamlet":["האמלט"],"Capri":["קאפרי"],"Ambrosia":["אמברוזיה"],"Mount Kalaga":["הר קאלאגה","קאלאגה"],"Lake Leonida":["אגם ליאונידה"],"Grassrivers":["גראסריברס"],"Grayson":["גרייסון"],"Millport":["מילפורט"],"Belville":["בלוויל"],"Leonida Keys":["קיס ליאונידה","הקיז"],"Mile Zero Air Station":["מייל זירו"]};
+GEOZ.forEach(g=>{const a=AKA[g.name];if(a)g.aka=a;});
+(function(){
+  const stop=/^(south|north|east|west|sw|nw|se|ne|southern|northern|northernmost|east of|west of|south of|north of|behind|near)\b/i;
+  const m={};
+  PLACES.forEach(p=>{p.region.split(",").forEach(part=>{const t=part.trim();if(!t||stop.test(t))return;(m[t]=m[t]||[]).push(p.pos);});});
+  const have=new Set(GEOZ.map(g=>norm(g.name)));
+  Object.keys(m).forEach(k=>{
+    if(have.has(norm(k)))return;
+    const ps=m[k];GEOZ.push({name:k,kind:"אזור",pos:[ps.reduce((a,p)=>a+p[0],0)/ps.length,ps.reduce((a,p)=>a+p[1],0)/ps.length]});
+  });
+})();
+PLACES.forEach(p=>GEOZ.push({name:p.name,he:p.he,kind:"מקום סודי",pos:p.pos,id:p.id}));
+
+function findGeo(q){
+  const nq=norm(q);if(!nq)return[];
+  const scored=[];
+  GEOZ.forEach(g=>{
+    let best=-1;
+    [g.name,g.he].concat(g.aka||[]).forEach(nm=>{
+      if(!nm)return;
+      const n=norm(nm);
+      if(n===nq)best=Math.max(best,100);
+      else if(n.indexOf(nq)===0)best=Math.max(best,80);
+      else if(n.indexOf(nq)>0)best=Math.max(best,60-n.indexOf(nq));
+      else if(nq.indexOf(n)===0&&n.length>3)best=Math.max(best,45);
+    });
+    if(best>=0)scored.push({g:g,s:best});
+  });
+  scored.sort((a,b)=>b.s-a.s||a.g.name.length-b.g.name.length);
+  const seen=new Set(),out=[];
+  scored.forEach(x=>{const k=norm(x.g.name);if(!seen.has(k)){seen.add(k);out.push(x.g);}});
+  return out.slice(0,8);
+}
+
+let anchor=null;
+const anchorG=el("g",{id:"anchorG",style:"display:none"},world);
+el("circle",{r:15,fill:"none",stroke:"#27d3e6","stroke-width":2.5,opacity:.85},anchorG);
+el("circle",{r:6,fill:"#27d3e6",stroke:"#fff","stroke-width":2},anchorG);
+const anchorT=el("text",{x:0,y:-22,"text-anchor":"middle","font-size":12,fill:"#fff","paint-order":"stroke",stroke:"#10122a","stroke-width":3,"font-weight":600},anchorG);
+
+function dist(a,b){return Math.hypot(a[0]-b[0],a[1]-b[1]);}
+function fmtD(u){const km=u*KM_PER_UNIT;return km<3?String(Math.round(km*10)/10):String(Math.round(km));}
+function setAnchor(g){
+  anchor={name:g.name,pos:g.pos};
+  anchorT.textContent=g.name;
+  anchorG.style.display="";
+  $("addrclear").style.display="";
+  updLabels();
+  flyTo({pos:g.pos},430);
+  buildNear();
+  $("list").classList.remove("open");
+  $("near").classList.add("open");
+}
+function clearAnchor(){
+  anchor=null;anchorG.style.display="none";
+  $("addrclear").style.display="none";addr.value="";
+  $("near").classList.remove("open");
+}
+function buildNear(){
+  if(!anchor)return;
+  const v=PLACES.filter(visible).map(p=>({p:p,d:dist(p.pos,anchor.pos)})).sort((a,b)=>a.d-b.d);
+  $("neartitle").textContent="שווה ליד "+anchor.name+" ("+v.length+")";
+  $("nearitems").innerHTML=(v.length?v.map(x=>{const p=x.p;
+    return `<button class="item" data-id="${p.id}"><b>${esc(p.he)}</b> <span class="dist">${fmtD(x.d)} ק\"מ</span><br><span>${esc(p.region)}</span><br>${p.cats.map(c=>`<span class="dot" style="background:${CAT[c][1]}"></span> <span>${CAT[c][0]}</span>`).join(" &nbsp; ")} <span>· ${p.ch?"פרק "+p.ch:"פרק לא ידוע"}</span></button>`;
+  }).join(""):'<div class="empty">אין מקומות בסינון הנוכחי</div>')+'<div class="scale-note">המרחקים הערכה גסה בלבד — קנה מידה משוער של מפה סכמטית, לא נתון רשמי מהמשחק.</div>';
+  $("nearitems").querySelectorAll(".item").forEach(b=>b.onclick=()=>select(b.dataset.id,true));
+}
+
+const addr=$("addr"),dd=$("addrdd");
+function pickGeo(g){addr.value=g.name;dd.style.display="none";setAnchor(g);}
+addr.addEventListener("input",()=>{
+  const r=findGeo(addr.value);dd._r=r;
+  if(!norm(addr.value)){dd.style.display="none";return;}
+  dd.innerHTML=r.length?r.map((g,i)=>`<button class="addr-opt" data-i="${i}"><b>${esc(g.name)}</b>${g.he?" · "+esc(g.he):""} <span>${g.kind}</span></button>`).join(""):'<div class="addr-none">לא נמצא — נסו שם של עיר, אזור או מקום מהמשחק (באנגלית או בעברית)</div>';
+  dd.style.display="";
+  dd.querySelectorAll(".addr-opt").forEach(b=>b.onclick=()=>pickGeo(dd._r[+b.dataset.i]));
+});
+addr.addEventListener("keydown",e=>{
+  if(e.key==="Enter"){e.preventDefault();const r=(dd._r&&dd._r.length)?dd._r:findGeo(addr.value);if(r.length)pickGeo(r[0]);}
+  if(e.key==="Escape")dd.style.display="none";
+});
+addr.addEventListener("focus",()=>{if(norm(addr.value))addr.dispatchEvent(new Event("input"));});
+document.addEventListener("click",e=>{if(!$("nearRow").contains(e.target))dd.style.display="none";});
+$("addrclear").onclick=clearAnchor;
+$("nearclose").onclick=()=>$("near").classList.remove("open");
+
 buildFilters();buildPins();setVB(HOME);
 const h=location.hash.slice(1);if(h&&PLACES.some(p=>p.id===h))setTimeout(()=>select(h,true),200);
 window.addEventListener("resize",()=>setVB(st.vb));
