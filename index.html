@@ -6,12 +6,12 @@
 <meta name="robots" content="noindex">
 <title>מפת הסודות של GTA 6</title>
 <style>
-:root{--bg:#0b0d14;--panel:#141824;--panel2:#1c2133;--line:#2a3150;--fg:#eef0f7;--mut:#98a0bd;--pink:#ff3d81;--cyan:#27d3e6;--weapon:#ff4d5e;--vehicle:#4aa8ff;--money:#33d17a;--secret:#b57bff}
+:root{--bg:#12142a;--panel:#1a1e36;--panel2:#232848;--line:#343b5e;--fg:#eef0f7;--mut:#8f97b8;--pink:#ff3d81;--cyan:#27d3e6;--weapon:#ff4d5e;--vehicle:#4aa8ff;--money:#33d17a;--secret:#b57bff}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Hebrew",Arial,sans-serif;overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 #app{position:fixed;inset:0;display:flex;flex-direction:column}
-header{background:linear-gradient(180deg,#171b2b,#10131f);border-bottom:1px solid var(--line);padding:8px 10px;z-index:5}
+header{background:linear-gradient(180deg,#1c2038,#141730);border-bottom:1px solid var(--line);padding:8px 10px;z-index:5}
 .row{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:2px 0}
 .row::-webkit-scrollbar{display:none}
 h1{font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:baseline;white-space:nowrap}
@@ -23,19 +23,19 @@ h1 small{color:var(--mut);font-weight:400;font-size:11px}
 .lbl{flex:none;color:var(--mut);font-size:12px;padding:0 2px}
 #search{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:999px;color:var(--fg);padding:6px 12px;font-size:13px}
 main{position:relative;flex:1;min-height:0}
-#map{position:absolute;inset:0;touch-action:none;cursor:grab;background:#0a1a2b}
+#map{position:absolute;inset:0;touch-action:none;cursor:grab;background:#191b38}
 #map:active{cursor:grabbing}
 svg{width:100%;height:100%;display:block}
 .pin{cursor:pointer}
 .pin .ring{fill:none;stroke:#fff;stroke-width:2;opacity:0}
 .pin.sel .ring{opacity:1}
-.pin text{fill:#fff;paint-order:stroke;stroke:#000;stroke-width:3px;font-weight:600;pointer-events:none}
+.pin text{fill:#fff;paint-order:stroke;stroke:#10122a;stroke-width:3px;font-weight:600;pointer-events:none}
 .pin.unk .body{stroke-dasharray:3 2}
 #zoom{position:absolute;left:10px;bottom:150px;display:flex;flex-direction:column;gap:6px;z-index:3}
 #zoom button{width:40px;height:40px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:20px}
-#count{position:absolute;left:10px;top:10px;background:rgba(20,24,36,.9);border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:12px;z-index:3}
+#count{position:absolute;left:10px;top:10px;background:rgba(26,30,54,.9);border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:12px;z-index:3}
 #listbtn{position:absolute;right:10px;top:10px;z-index:3;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px}
-#note{position:absolute;right:10px;bottom:8px;max-width:60%;font-size:11px;color:var(--mut);background:rgba(10,13,20,.8);padding:4px 8px;border-radius:8px;z-index:2;pointer-events:none}
+#note{position:absolute;right:10px;bottom:8px;max-width:60%;font-size:11px;color:var(--mut);background:rgba(16,18,38,.8);padding:4px 8px;border-radius:8px;z-index:2;pointer-events:none}
 #panel{position:absolute;z-index:6;background:var(--panel);border:1px solid var(--line);overflow-y:auto;transition:transform .22s ease}
 @media (min-width:820px){#panel{top:10px;bottom:10px;right:10px;width:400px;border-radius:14px;transform:translateX(120%)}#panel.open{transform:none}#zoom{bottom:20px}}
 @media (max-width:819px){#panel{left:0;right:0;bottom:0;max-height:64%;border-radius:16px 16px 0 0;transform:translateY(105%)}#panel.open{transform:none}}
@@ -49,9 +49,9 @@ svg{width:100%;height:100%;display:block}
 h3{font-size:13px;color:var(--cyan);margin:14px 0 4px}
 ol{padding:0 20px 0 0;margin:0}ol li{margin:0 0 8px}
 ul{padding:0 18px 0 0;margin:0}
-.warn{background:#2a2216;border:1px solid #5b4720;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:13px}
+.warn{background:#2a2616;border:1px solid #5b5320;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:13px}
 .src a{color:var(--cyan)}
-#list{position:absolute;z-index:7;inset:0;background:#080a10;display:none;flex-direction:column}
+#list{position:absolute;z-index:7;inset:0;background:#0e1024;display:none;flex-direction:column}
 #list.open{display:flex}
 #list .top{padding:10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
 #list .items{overflow-y:auto;padding:8px 10px}
@@ -68,51 +68,95 @@ ul{padding:0 18px 0 0;margin:0}
   <div class="row" id="catRow"></div>
 </header>
 <main>
-  <div id="map"><svg id="svg" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div id="map"><svg id="svg" viewBox="0 0 1400 1915" preserveAspectRatio="xMidYMid meet"></svg></div>
   <div id="count"></div>
   <button id="listbtn">רשימה</button>
   <div id="zoom"><button id="zin" aria-label="הגדל">+</button><button id="zout" aria-label="הקטן">&minus;</button><button id="zhome" aria-label="איפוס">&#8962;</button></div>
-  <div id="note">המפה סכמטית: המיקומים ברמת אזור, לא קואורדינטות מדויקות של המשחק.</div>
+  <div id="note">המפה מצוירת לפי המפה הרשמית של ליאונידה. הסמנים ברמת אזור, לא קואורדינטות מדויקות מהמשחק.</div>
   <div id="panel"><button id="close" aria-label="סגור">&times;</button><div class="hd"><h2 id="pt"></h2><div class="en" id="pe"></div><div id="ptags"></div></div><div class="bd" id="pb"></div></div>
   <div id="list"><div class="top"><b>כל המקומות לפי הסינון</b><button class="chip" id="listclose">סגור</button></div><div class="items" id="items"></div></div>
 </main>
 </div>
 <script src="data.js"></script>
+<script src="map.js"></script>
 <script>
 (function(){
 const NS="http://www.w3.org/2000/svg";
 const CAT={weapon:["נשקים","#ff4d5e"],vehicle:["רכבים","#4aa8ff"],money:["כסף","#33d17a"],secret:["סודות","#b57bff"]};
 const CONF={multi:"כמה מקורות מסכימים",single:"מקור יחיד",disputed:"המקורות חלוקים"};
-const HOME=[132,90,870,1087];const st={ch:0,cats:new Set(),q:"",sel:null,vb:[0,0,1000,1250]};
+const HOME=[50,60,1300,1780];const st={ch:0,cats:new Set(),q:"",sel:null,vb:[0,0,1400,1915]};
 const $=id=>document.getElementById(id);
 const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
 const svg=$("svg");
 
-/* ---------- base map ---------- */
+/* ---------- path smoothing (Catmull-Rom -> bezier) ---------- */
+function smoothD(pts,closed){
+  const p=pts,n=p.length;
+  if(n<3)return "";
+  let d=`M${p[0][0]} ${p[0][1]}`;
+  const last=closed?n:n-1;
+  for(let i=0;i<last;i++){
+    const p0=p[(i-1+n)%n],p1=p[i],p2=p[(i+1)%n],p3=p[(i+2)%n];
+    const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6];
+    const c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+    d+=`C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`;
+  }
+  return d+(closed?"Z":"");
+}
+
+/* ---------- base map (style: the in-game pause map) ---------- */
 const defs=el("defs",{},svg);
-const g1=el("linearGradient",{id:"sea",x1:0,y1:0,x2:0,y2:1},defs);
-el("stop",{offset:"0","stop-color":"#0b2236"},g1);el("stop",{offset:"1","stop-color":"#08304a"},g1);
-const pat=el("pattern",{id:"swamp",width:14,height:14,patternUnits:"userSpaceOnUse"},defs);
-el("path",{d:"M0 10 Q3.5 6 7 10 T14 10",stroke:"#3f7a4f",fill:"none","stroke-width":1.2,opacity:.7},pat);
-el("rect",{x:-1000,y:-1000,width:3000,height:3500,fill:"url(#sea)"},svg);
+const g1=el("radialGradient",{id:"sea",cx:.42,cy:.4,r:1.1},defs);
+el("stop",{offset:"0","stop-color":"#21254a"},g1);el("stop",{offset:".55","stop-color":"#1a1d3c"},g1);el("stop",{offset:"1","stop-color":"#121430"},g1);
+const pat=el("pattern",{id:"swamp",width:16,height:16,patternUnits:"userSpaceOnUse"},defs);
+el("path",{d:"M0 11 Q4 6 8 11 T16 11",stroke:"#3d5c50",fill:"none","stroke-width":1.3,opacity:.8},pat);
+const grid=el("pattern",{id:"blocks",width:15,height:15,patternUnits:"userSpaceOnUse"},defs);
+el("path",{d:"M0 0H15M0 0V15",stroke:"#424a78",fill:"none","stroke-width":1.1,opacity:.7},grid);
+el("rect",{x:-1500,y:-1500,width:4500,height:5000,fill:"url(#sea)"},svg);
+// soft lighter bands in the water, like the in-game map shading
+const bands=el("g",{opacity:.028,fill:"#aab4e0"},svg);
+el("path",{d:"M-200 700 L1600 -100 L1600 200 L-200 1000 Z"},bands);
+
 const world=el("g",{id:"world"},svg);
-// grid
-const grid=el("g",{stroke:"#12384f","stroke-width":.6,opacity:.6},world);
-for(let x=0;x<=1000;x+=100)el("line",{x1:x,y1:0,x2:x,y2:1250},grid);
-for(let y=0;y<=1250;y+=100)el("line",{x1:0,y1:y,x2:1000,y2:y},grid);
-const land="M300 150 L420 120 L560 130 L700 120 L745 230 L770 330 L790 450 L815 560 L850 650 L860 730 L820 820 L760 910 L690 985 L620 1030 L540 1000 L470 985 L400 935 L335 870 L300 790 L330 700 L310 610 L292 480 L275 320 Z";
-el("path",{d:land,fill:"#243a2c",stroke:"#7fb28f","stroke-width":2.5,"stroke-linejoin":"round"},world);
-el("path",{d:"M470 800 L560 790 L650 840 L690 930 L640 1000 L540 985 L470 960 L430 900 Z",fill:"url(#swamp)",opacity:.9},world);
-el("ellipse",{cx:620,cy:540,rx:62,ry:44,fill:"#0f4a66",stroke:"#3a86a8","stroke-width":2},world);
-// keys
-[[520,1040,34,14],[470,1050,30,12],[420,1085,22,9],[390,1100,20,8],[345,1120,22,9],[400,1075,14,6],[570,1050,26,10],[600,1062,14,6],[335,845,18,10]].forEach(a=>el("ellipse",{cx:a[0],cy:a[1],rx:a[2],ry:a[3],fill:"#2c4a38",stroke:"#7fb28f","stroke-width":1.5},world));
-// Rialto islands
-[[835,622,16,26],[838,690,22,34],[835,752,16,24],[800,656,18,12]].forEach(a=>el("ellipse",{cx:a[0],cy:a[1],rx:a[2],ry:a[3],fill:"#2c4a38",stroke:"#7fb28f","stroke-width":1.5},world));
-// Vice City blob
-el("path",{d:"M700 640 L770 600 L810 640 L800 720 L790 800 L730 810 L700 740 Z",fill:"#37343f",stroke:"#8a82a8","stroke-width":1.5,opacity:.9},world);
-const regions=[["Lummox County",480,230],["Leonard County",650,300],["Kelly County",350,260],["Ambrosia",560,470],["Lake Leonida",620,545],["Port Gellhorn",310,600],["Vice-Dale County",740,560],["VICE CITY",748,700],["Mariana County",470,820],["Grassrivers",590,880],["Pelican Valley",455,935],["Leonida Keys",440,1130],["Rialto Islands",886,690],["Capri",385,780]];
-const rl=el("g",{"font-size":15,fill:"#cbd3ee",opacity:.78,"text-anchor":"middle","font-family":"system-ui"},world);
-regions.forEach(r=>{const t=el("text",{x:r[1],y:r[2],"letter-spacing":r[0]=="VICE CITY"?3:0,"font-weight":r[0]=="VICE CITY"?700:500},rl);t.textContent=r[0];});
+
+// landmasses
+const landG=el("g",{fill:"#2b3048",stroke:"#a3abd0","stroke-width":2.4,"stroke-linejoin":"round"},world);
+GEO.land.forEach(poly=>el("path",{d:smoothD(poly,true),"vector-effect":"non-scaling-stroke"},landG));
+// terrain hints
+const terrG=el("g",{fill:"#2e3547",opacity:.85,stroke:"none"},world);
+GEO.terrain.forEach(poly=>el("path",{d:smoothD(poly,true)},terrG));
+// urban areas
+const urbG=el("g",{fill:"#363d60",stroke:"none",opacity:.95},world);
+GEO.urban.forEach(poly=>el("path",{d:smoothD(poly,true)},urbG));
+const urbBlk=el("g",{fill:"url(#blocks)",stroke:"none",opacity:.75},world);
+GEO.urbanBlocks.forEach(poly=>el("path",{d:smoothD(poly,true)},urbBlk));
+// swamps
+const swG=el("g",{fill:"url(#swamp)",stroke:"none",opacity:.7},world);
+GEO.swamp.forEach(poly=>el("path",{d:smoothD(poly,true)},swG));
+// lakes (water drawn over land)
+const lakeG=el("g",{fill:"#1d2040",stroke:"#9aa3c2","stroke-width":2},world);
+GEO.lakes.forEach(poly=>el("path",{d:smoothD(poly,true),"vector-effect":"non-scaling-stroke"},lakeG));
+// runways
+const rwG=el("g",{fill:"#3d4468",stroke:"none",opacity:.9},world);
+GEO.runways.forEach(r=>el("rect",{x:r[0]-r[2]/2,y:r[1]-r[3]/2,width:r[2],height:r[3],rx:2,transform:`rotate(${r[4]||0} ${r[0]} ${r[1]})`},rwG));
+// roads
+const roadG=el("g",{fill:"none",stroke:"#c9bc96","stroke-width":3,"stroke-linecap":"round",opacity:.9},world);
+GEO.roads.forEach(r=>el("path",{d:smoothD(r,false),"vector-effect":"non-scaling-stroke"},roadG));
+// route shields
+const shG=el("g",{"font-family":"system-ui","font-weight":700,"text-anchor":"middle"},world);
+let shEls=[];
+GEO.shields.forEach(s=>{
+  const w=String(s[0]).length>2?22:18;
+  const g=el("g",{transform:`translate(${s[1]} ${s[2]})`},shG);
+  el("rect",{x:-w/2,y:-9,width:w,height:18,rx:5,fill:s[3]=="i"?"#41519e":s[3]=="t"?"#a07c2f":"#cdd2e4",stroke:"none"},g);
+  const t=el("text",{x:0,y:4.5,"font-size":9.5,fill:(s[3]=="s"||s[3]=="c"||s[3]=="u")?"#1c2038":"#fff"},g);t.textContent=s[0];
+  shEls.push(g);
+});
+// labels
+const ctyG=el("g",{"font-family":"system-ui","font-weight":700,fill:"#c6cdea",opacity:.5,"text-anchor":"middle","font-size":26,"letter-spacing":4},world);
+GEO.countyLabels.forEach(l=>{const t=el("text",{x:l[1],y:l[2]},ctyG);t.textContent=l[0];});
+const twnG=el("g",{id:"towns","font-family":"system-ui","font-weight":600,fill:"#aeb6d6",opacity:.75,"text-anchor":"middle","font-size":14,"letter-spacing":1.5},world);
+GEO.townLabels.forEach(l=>{const t=el("text",{x:l[1],y:l[2]},twnG);t.textContent=l[0];});
 const pinsG=el("g",{id:"pins"},world);
 
 /* ---------- pins ---------- */
@@ -148,7 +192,10 @@ function applyFilter(){
   if($("list").classList.contains("open"))buildList();
 }
 function updLabels(){
-  const k=1000/st.vb[2];
+  const k=1400/st.vb[2];
+  twnG.style.opacity=k>=1.45?.75:0;
+  const ss=1/Math.max(1,Math.pow(k,.7));
+  shEls.forEach(g=>{const b=g.getAttribute("transform").replace(/ scale\(.*\)/,"");g.setAttribute("transform",b+` scale(${ss.toFixed(3)})`);});
   Object.values(pinEls).forEach(g=>{
     const t=g.querySelector("text");t.style.display=(k>=2.2||g.classList.contains("sel"))?"":"none";
     const s=1/Math.max(1,Math.pow(k,.78));g.setAttribute("transform",g.getAttribute("transform").replace(/ scale\(.*\)/,"")+` scale(${s.toFixed(3)})`);
@@ -158,7 +205,7 @@ function updLabels(){
 /* ---------- pan / zoom ---------- */
 let moved=0;const ptrs=new Map();let pinch0=null;
 function setVB(v,anim){
-  const W=1000,H=1250,minW=70;
+  const W=1400,H=1915,minW=90;
   let w=Math.max(minW,Math.min(W*1.4,v[2])),h=w*(H/W);
   let x=Math.max(-W*.2,Math.min(W*1.2-w,v[0])),y=Math.max(-H*.2,Math.min(H*1.2-h,v[1]));
   st.vb=[x,y,w,h];svg.setAttribute("viewBox",st.vb.join(" "));updLabels();
@@ -192,10 +239,9 @@ $("zin").onclick=()=>{const r=map.getBoundingClientRect();zoomAt(r.left+r.width/
 $("zout").onclick=()=>{const r=map.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,1/1.5);};
 $("zhome").onclick=()=>setVB(HOME);
 function flyTo(p,zoomW){
-  const w=zoomW||Math.min(st.vb[2],240),h=w*1.25;
-  const panelOffset=window.innerWidth>=820?-w*0.18:0;
+  const w=zoomW||Math.min(st.vb[2],330),h=w*(1915/1400);
   const yOff=window.innerWidth<820?h*0.27:0;
-  let t0=performance.now(),from=st.vb.slice(),to=[p.pos[0]-w/2-panelOffset*-1*0,p.pos[1]-h/2+yOff,w,h];
+  let t0=performance.now(),from=st.vb.slice(),to=[p.pos[0]-w/2,p.pos[1]-h/2+yOff,w,h];
   if(window.innerWidth>=820)to[0]=p.pos[0]-w/2+w*0.18;
   (function step(t){const k=Math.min(1,(t-t0)/380),e=1-Math.pow(1-k,3);setVB(from.map((v,i)=>v+(to[i]-v)*e));if(k<1)requestAnimationFrame(step);})(t0);
 }
