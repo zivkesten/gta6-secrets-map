@@ -19,7 +19,19 @@ window.SRC = {
   loot: ["MissionPassed (loot map)", "https://gta6missionpassed.com/pages/loot"],
   bay: ["GTA Bay", "https://gtabay.com/en/guides/gta-6-secret-locations"],
   cmap: ["GTA6 Collectibles Map", "https://gta6collectiblesmap.com/articles/gta-6-secret-locations"],
-  hideouts: ["GTA Culture (gang hideouts)", "https://gtaculture.com/guides/gta-6-gang-hideouts"]
+  hideouts: ["GTA Culture (gang hideouts)", "https://gtaculture.com/guides/gta-6-gang-hideouts"],
+  palmer: ["gta6.house (Palmer warehouse)", "https://gta6.house/library/locations/palmer-fishing-warehouse"],
+  beebom: ["Beebom (golden AK)", "https://beebom.com/gta-6-secret-golden-ak-47-location-safe-code/"],
+  gg: ["games.gg (Palmer code)", "https://games.gg/grand-theft-auto-vi/guides/palmer-fishing-warehouse-safe-code-in-gta-6/"],
+  polygon: ["Polygon (crab codes)", "https://www.polygon.com/gta-6-giant-crab-safe-code-crabshack-vf5-smg-how-to-get-pelican-valley-outpost/"],
+  arena: ["AreaJugones (rainbow watch)", "https://areajugones.sport.es/videojuegos/el-rolex-que-en-la-vida-real-cuesta-medic-millon-esta-gratis-en-gta-vi-donde-encontrarlo/"],
+  vpulse: ["VicePulse (Kaleidoscope)", "https://vicepulse.org/t/gta-6-free-crowex-octane-kaleidoscope-rainbow-daytona-watch"],
+  gmapcity: ["gta6map.city (Casanova house)", "https://gta6map.city/secrets/rainbow-daytona-rolex-casanova-island-house/"],
+  igg: ["Insider Gaming (Thrax)", "https://insider-gaming.com/how-to-get-the-fastest-car-in-gta-6/"],
+  vicevaulted: ["ViceVaulted (Thrax glitch)", "https://www.vicevaulted.com/d/gta6-andrew-node-thrax-garage-breach-glitch"],
+  leonida: ["Grand Leonida (Thrax)", "https://grandleonida.com/guides/gta-6-truffade-thrax-free-starfish-island-no-tracker/"],
+  gfinity: ["Gfinity (Burned Man)", "https://www.gfinityesports.com/article/gta-6-where-to-find-and-how-to-complete-the-burned-man-encounter"],
+  bugs: ["GTA6BUGS (Burned Man)", "https://gta6bugs.com/easter-eggs/burned-man-sahara-crash-insurance-fraud"]
 };
 
 window.PLACES = [
@@ -310,5 +322,21 @@ window.PLACES = [
     steps: ["נוסעים בכביש דרום Hamlet ומחפשים אותו ליד פגר איל.", "רודפים אחריו לביצה עד עץ עטוף ערפל ירוק. נושמים את הערפל: מתעלפים, הוא בא להסתכל, מתעוררים ליד.", "המשימה של Kirk נגמרת בבחירה לירות בו או לשחרר."],
     needs: "אין.",
     src: ["loot"]
+  },
+  {
+    id: "palmer", name: "Palmer Fishing Warehouse", he: "מחסן הדייגים פאלמר (AK הזהב)", region: "Bobcat Key, west of Watson Bay",
+    cats: ["weapon", "money"], ch: null, conf: "multi", pos: [498, 1228],
+    reward: ["רובה ייחודי מוזהב: La Polilla Negra KZ-59 (AK-47 זהב, לא נמכר ב-Ammu-Nation)", "כספת בקוד 1886: $3,000 עד $3,700 מזומן", "שעון יוקרה Crowex Octane Elite (של לוסיה)", "משגר רימונים GLR 40 וחבילות סמים למכירה"],
+    steps: [
+      "המתחם בקצה הדרום-מזרחי של Bobcat Key, האי מערבית ל-Watson Bay (גשר מהעיירה). מבצע לא חוקי של La Polilla Negra עם אבטחה כבדה.",
+      "לא דרך השער: נוסעים על החוף לצד המערבי ונכנסים בפרצה בגדר. ליד המכולות מונח רובה צלפים עם משתיק.",
+      "במבנה האחסון הצפוני: שומר במזח האחורי ועוד אחד בקומת הקרקע. על המחשב בקומת הקרקע מכתב בספרדית שמסתיים בקוד הכספת 1886. מול המחשבים, על השולחן: משגר GLR 40.",
+      "בקומה העליונה שלושה שומרים (Focus עוזר). בחדר: הכספת בפינה (1886), ה-KZ-59 המוזהב במארז ליד החלון מתחת למנורה, והשעון על השולחן המרכזי.",
+      "במחסן הדרומי חבילות קוקאין. אם התראתם, מגיעים תגבורת ומשטרה; אפשר לברוח בסירה מהמזח האחורי.",
+      "הנשק נשאר שלכם לצמיתות אחרי שמאחסנים אותו בתא המטען של רכב."
+    ],
+    needs: "אין פרק מחייב במקורות. מדריך אחד ממליץ לדלג בפרק 1 בגלל רמת האבטחה.",
+    notes: "נוסף מריל אינסטגרם (26.11) ואומת מול gta6.house, Beebom ו-games.gg. בריל נאמר $3,000 בכספת ו-$2,000 בסמים; המדריכים נותנים $3,000 עד $3,700 בכספת.",
+    src: ["palmer", "beebom", "gg"]
   }
 ];
