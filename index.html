@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="robots" content="noindex">
+<title>מפת הסודות של GTA 6</title>
+<style>
+:root{--bg:#0b0d14;--panel:#141824;--panel2:#1c2133;--line:#2a3150;--fg:#eef0f7;--mut:#98a0bd;--pink:#ff3d81;--cyan:#27d3e6;--weapon:#ff4d5e;--vehicle:#4aa8ff;--money:#33d17a;--secret:#b57bff}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Hebrew",Arial,sans-serif;overflow:hidden}
+button{font:inherit;color:inherit;cursor:pointer}
+#app{position:fixed;inset:0;display:flex;flex-direction:column}
+header{background:linear-gradient(180deg,#171b2b,#10131f);border-bottom:1px solid var(--line);padding:8px 10px;z-index:5}
+.row{display:flex;gap:6px;align-items:center;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+.row::-webkit-scrollbar{display:none}
+h1{font-size:15px;margin:0 0 4px;display:flex;gap:8px;align-items:baseline;white-space:nowrap}
+h1 small{color:var(--mut);font-weight:400;font-size:11px}
+.chip{flex:none;border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font-size:13px;white-space:nowrap;display:flex;gap:6px;align-items:center}
+.chip.on{background:var(--pink);border-color:var(--pink);color:#fff}
+.chip.cat.on{color:#fff}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.lbl{flex:none;color:var(--mut);font-size:12px;padding:0 2px}
+#search{flex:1;min-width:120px;background:var(--panel);border:1px solid var(--line);border-radius:999px;color:var(--fg);padding:6px 12px;font-size:13px}
+main{position:relative;flex:1;min-height:0}
+#map{position:absolute;inset:0;touch-action:none;cursor:grab;background:#0a1a2b}
+#map:active{cursor:grabbing}
+svg{width:100%;height:100%;display:block}
+.pin{cursor:pointer}
+.pin .ring{fill:none;stroke:#fff;stroke-width:2;opacity:0}
+.pin.sel .ring{opacity:1}
+.pin text{fill:#fff;paint-order:stroke;stroke:#000;stroke-width:3px;font-weight:600;pointer-events:none}
+.pin.unk .body{stroke-dasharray:3 2}
+#zoom{position:absolute;left:10px;bottom:150px;display:flex;flex-direction:column;gap:6px;z-index:3}
+#zoom button{width:40px;height:40px;border-radius:10px;background:var(--panel);border:1px solid var(--line);font-size:20px}
+#count{position:absolute;left:10px;top:10px;background:rgba(20,24,36,.9);border:1px solid var(--line);border-radius:10px;padding:5px 10px;font-size:12px;z-index:3}
+#listbtn{position:absolute;right:10px;top:10px;z-index:3;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px}
+#note{position:absolute;right:10px;bottom:8px;max-width:60%;font-size:11px;color:var(--mut);background:rgba(10,13,20,.8);padding:4px 8px;border-radius:8px;z-index:2;pointer-events:none}
+#panel{position:absolute;z-index:6;background:var(--panel);border:1px solid var(--line);overflow-y:auto;transition:transform .22s ease}
+@media (min-width:820px){#panel{top:10px;bottom:10px;right:10px;width:400px;border-radius:14px;transform:translateX(120%)}#panel.open{transform:none}#zoom{bottom:20px}}
+@media (max-width:819px){#panel{left:0;right:0;bottom:0;max-height:64%;border-radius:16px 16px 0 0;transform:translateY(105%)}#panel.open{transform:none}}
+#panel .hd{position:sticky;top:0;background:var(--panel);padding:12px 14px 8px;border-bottom:1px solid var(--line);z-index:1}
+#panel h2{margin:0;font-size:18px}
+#panel .en{color:var(--mut);font-size:12px;direction:ltr;text-align:right}
+#close{position:absolute;left:10px;top:10px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;width:32px;height:32px}
+.bd{padding:10px 14px 18px;font-size:14px;line-height:1.55}
+.tag{display:inline-block;font-size:11px;border-radius:6px;padding:2px 7px;margin:2px 0 2px 4px;background:var(--panel2);border:1px solid var(--line)}
+.tag.multi{border-color:var(--money);color:#9af0c0}.tag.single{border-color:#d9a441;color:#f3cf86}.tag.disputed{border-color:var(--weapon);color:#ffa0aa}
+h3{font-size:13px;color:var(--cyan);margin:14px 0 4px}
+ol{padding:0 20px 0 0;margin:0}ol li{margin:0 0 8px}
+ul{padding:0 18px 0 0;margin:0}
+.warn{background:#2a2216;border:1px solid #5b4720;border-radius:8px;padding:8px 10px;margin-top:10px;font-size:13px}
+.src a{color:var(--cyan)}
+#list{position:absolute;z-index:7;inset:0;background:#080a10;display:none;flex-direction:column}
+#list.open{display:flex}
+#list .top{padding:10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
+#list .items{overflow-y:auto;padding:8px 10px}
+.item{display:block;width:100%;text-align:right;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:9px 11px;margin-bottom:8px}
+.item b{font-size:14px}.item span{font-size:12px;color:var(--mut)}
+.empty{padding:30px;text-align:center;color:var(--mut)}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <h1>מפת הסודות של GTA 6 <small id="sub"></small></h1>
+  <div class="row" id="chRow"></div>
+  <div class="row" id="catRow"></div>
+</header>
+<main>
+  <div id="map"><svg id="svg" viewBox="0 0 1000 1250" preserveAspectRatio="xMidYMid meet"></svg></div>
+  <div id="count"></div>
+  <button id="listbtn">רשימה</button>
+  <div id="zoom"><button id="zin" aria-label="הגדל">+</button><button id="zout" aria-label="הקטן">&minus;</button><button id="zhome" aria-label="איפוס">&#8962;</button></div>
+  <div id="note">המפה סכמטית: המיקומים ברמת אזור, לא קואורדינטות מדויקות של המשחק.</div>
+  <div id="panel"><button id="close" aria-label="סגור">&times;</button><div class="hd"><h2 id="pt"></h2><div class="en" id="pe"></div><div id="ptags"></div></div><div class="bd" id="pb"></div></div>
+  <div id="list"><div class="top"><b>כל המקומות לפי הסינון</b><button class="chip" id="listclose">סגור</button></div><div class="items" id="items"></div></div>
+</main>
+</div>
+<script src="data.js"></script>
+<script>
+(function(){
+const NS="http://www.w3.org/2000/svg";
+const CAT={weapon:["נשקים","#ff4d5e"],vehicle:["רכבים","#4aa8ff"],money:["כסף","#33d17a"],secret:["סודות","#b57bff"]};
+const CONF={multi:"כמה מקורות מסכימים",single:"מקור יחיד",disputed:"המקורות חלוקים"};
+const HOME=[132,90,870,1087];const st={ch:0,cats:new Set(),q:"",sel:null,vb:[0,0,1000,1250]};
+const $=id=>document.getElementById(id);
+const el=(n,a,p)=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e;};
+const svg=$("svg");
+
+/* ---------- base map ---------- */
+const defs=el("defs",{},svg);
+const g1=el("linearGradient",{id:"sea",x1:0,y1:0,x2:0,y2:1},defs);
+el("stop",{offset:"0","stop-color":"#0b2236"},g1);el("stop",{offset:"1","stop-color":"#08304a"},g1);
+const pat=el("pattern",{id:"swamp",width:14,height:14,patternUnits:"userSpaceOnUse"},defs);
+el("path",{d:"M0 10 Q3.5 6 7 10 T14 10",stroke:"#3f7a4f",fill:"none","stroke-width":1.2,opacity:.7},pat);
+el("rect",{x:-1000,y:-1000,width:3000,height:3500,fill:"url(#sea)"},svg);
+const world=el("g",{id:"world"},svg);
+// grid
+const grid=el("g",{stroke:"#12384f","stroke-width":.6,opacity:.6},world);
+for(let x=0;x<=1000;x+=100)el("line",{x1:x,y1:0,x2:x,y2:1250},grid);
+for(let y=0;y<=1250;y+=100)el("line",{x1:0,y1:y,x2:1000,y2:y},grid);
+const land="M300 150 L420 120 L560 130 L700 120 L745 230 L770 330 L790 450 L815 560 L850 650 L860 730 L820 820 L760 910 L690 985 L620 1030 L540 1000 L470 985 L400 935 L335 870 L300 790 L330 700 L310 610 L292 480 L275 320 Z";
+el("path",{d:land,fill:"#243a2c",stroke:"#7fb28f","stroke-width":2.5,"stroke-linejoin":"round"},world);
+el("path",{d:"M470 800 L560 790 L650 840 L690 930 L640 1000 L540 985 L470 960 L430 900 Z",fill:"url(#swamp)",opacity:.9},world);
+el("ellipse",{cx:620,cy:540,rx:62,ry:44,fill:"#0f4a66",stroke:"#3a86a8","stroke-width":2},world);
+// keys
+[[520,1040,34,14],[470,1050,30,12],[420,1085,22,9],[390,1100,20,8],[345,1120,22,9],[400,1075,14,6],[570,1050,26,10],[600,1062,14,6],[335,845,18,10]].forEach(a=>el("ellipse",{cx:a[0],cy:a[1],rx:a[2],ry:a[3],fill:"#2c4a38",stroke:"#7fb28f","stroke-width":1.5},world));
+// Rialto islands
+[[835,622,16,26],[838,690,22,34],[835,752,16,24],[800,656,18,12]].forEach(a=>el("ellipse",{cx:a[0],cy:a[1],rx:a[2],ry:a[3],fill:"#2c4a38",stroke:"#7fb28f","stroke-width":1.5},world));
+// Vice City blob
+el("path",{d:"M700 640 L770 600 L810 640 L800 720 L790 800 L730 810 L700 740 Z",fill:"#37343f",stroke:"#8a82a8","stroke-width":1.5,opacity:.9},world);
+const regions=[["Lummox County",480,230],["Leonard County",650,300],["Kelly County",350,260],["Ambrosia",560,470],["Lake Leonida",620,545],["Port Gellhorn",310,600],["Vice-Dale County",740,560],["VICE CITY",748,700],["Mariana County",470,820],["Grassrivers",590,880],["Pelican Valley",455,935],["Leonida Keys",440,1130],["Rialto Islands",886,690],["Capri",385,780]];
+const rl=el("g",{"font-size":15,fill:"#cbd3ee",opacity:.78,"text-anchor":"middle","font-family":"system-ui"},world);
+regions.forEach(r=>{const t=el("text",{x:r[1],y:r[2],"letter-spacing":r[0]=="VICE CITY"?3:0,"font-weight":r[0]=="VICE CITY"?700:500},rl);t.textContent=r[0];});
+const pinsG=el("g",{id:"pins"},world);
+
+/* ---------- pins ---------- */
+let pinEls={};
+function visible(p){
+  if(st.cats.size&&!p.cats.some(c=>st.cats.has(c)))return false;
+  if(st.ch&&p.ch&&p.ch>st.ch)return false;
+  if(st.q){const s=(p.name+" "+p.he+" "+p.region+" "+p.reward.join(" ")).toLowerCase();if(!s.includes(st.q.toLowerCase()))return false;}
+  return true;
+}
+function buildPins(){
+  pinsG.innerHTML="";pinEls={};
+  PLACES.forEach(p=>{
+    const g=el("g",{class:"pin"+(p.ch?"":" unk"),transform:`translate(${p.pos[0]} ${p.pos[1]})`},pinsG);
+    el("circle",{class:"ring",r:p.star?18:14},g);
+    const col=CAT[p.cats[0]][1];
+    el("circle",{class:"body",r:p.star?11:8,fill:col,stroke:"#fff","stroke-width":1.8},g);
+    if(p.cats.length>1){el("circle",{r:3.2,fill:"#fff",cx:0,cy:0,opacity:.9},g);}
+    if(p.star)el("path",{d:"M0 -26 L2.6 -20 L9 -20 L4 -16 L6 -10 L0 -13.5 L-6 -10 L-4 -16 L-9 -20 L-3 -20Z",fill:"#ffd23f",stroke:"#000","stroke-width":.8},g);
+    const t=el("text",{x:0,y:-14,"text-anchor":"middle","font-size":11,class:"pl"},g);t.textContent=p.he;
+    el("circle",{r:20,fill:"transparent"},g);
+    g.addEventListener("click",e=>{if(moved>6)return;e.stopPropagation();select(p.id,true);});
+    pinEls[p.id]=g;
+  });
+  applyFilter();
+}
+function applyFilter(){
+  let n=0;
+  PLACES.forEach(p=>{const v=visible(p);pinEls[p.id].style.display=v?"":"none";if(v)n++;});
+  $("count").textContent=n+" מתוך "+PLACES.length+" מקומות";
+  if(st.sel&&!visible(PLACES.find(x=>x.id===st.sel)))closePanel();
+  updLabels();
+  if($("list").classList.contains("open"))buildList();
+}
+function updLabels(){
+  const k=1000/st.vb[2];
+  Object.values(pinEls).forEach(g=>{
+    const t=g.querySelector("text");t.style.display=(k>=2.2||g.classList.contains("sel"))?"":"none";
+    const s=1/Math.max(1,Math.pow(k,.78));g.setAttribute("transform",g.getAttribute("transform").replace(/ scale\(.*\)/,"")+` scale(${s.toFixed(3)})`);
+  });
+}
+
+/* ---------- pan / zoom ---------- */
+let moved=0;const ptrs=new Map();let pinch0=null;
+function setVB(v,anim){
+  const W=1000,H=1250,minW=70;
+  let w=Math.max(minW,Math.min(W*1.4,v[2])),h=w*(H/W);
+  let x=Math.max(-W*.2,Math.min(W*1.2-w,v[0])),y=Math.max(-H*.2,Math.min(H*1.2-h,v[1]));
+  st.vb=[x,y,w,h];svg.setAttribute("viewBox",st.vb.join(" "));updLabels();
+}
+function aspectFix(){const r=$("map").getBoundingClientRect();return r.width/r.height;}
+function screenToWorld(cx,cy){
+  const r=svg.getBoundingClientRect(),vb=st.vb;
+  const s=Math.min(r.width/vb[2],r.height/vb[3]);
+  const offx=(r.width-vb[2]*s)/2,offy=(r.height-vb[3]*s)/2;
+  return [vb[0]+(cx-r.left-offx)/s,vb[1]+(cy-r.top-offy)/s,s];
+}
+function zoomAt(cx,cy,f){
+  const [wx,wy]=screenToWorld(cx,cy);const vb=st.vb;
+  const nw=vb[2]/f,nh=vb[3]/f;
+  setVB([wx-(wx-vb[0])/f,wy-(wy-vb[1])/f,nw,nh]);
+}
+const map=$("map");
+map.addEventListener("wheel",e=>{e.preventDefault();zoomAt(e.clientX,e.clientY,e.deltaY<0?1.25:.8);},{passive:false});
+map.addEventListener("pointerdown",e=>{ptrs.set(e.pointerId,[e.clientX,e.clientY]);moved=0;if(ptrs.size==2){const a=[...ptrs.values()];pinch0={d:Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1])};}});
+map.addEventListener("pointermove",e=>{
+  if(!ptrs.has(e.pointerId))return;
+  const prev=ptrs.get(e.pointerId);const dx=e.clientX-prev[0],dy=e.clientY-prev[1];
+  ptrs.set(e.pointerId,[e.clientX,e.clientY]);
+  if(ptrs.size==1){moved+=Math.abs(dx)+Math.abs(dy);if(moved>3){if(!map.hasPointerCapture(e.pointerId))map.setPointerCapture(e.pointerId);const [,,s]=screenToWorld(0,0);setVB([st.vb[0]-dx/s,st.vb[1]-dy/s,st.vb[2],st.vb[3]]);}}
+  else if(ptrs.size==2&&pinch0){const a=[...ptrs.values()];const d=Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);moved+=10;zoomAt((a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2,d/pinch0.d);pinch0.d=d;}
+});
+const up=e=>{ptrs.delete(e.pointerId);if(ptrs.size<2)pinch0=null;};
+map.addEventListener("pointerup",up);map.addEventListener("pointercancel",up);
+map.addEventListener("click",()=>{if(moved<=6)closePanel();});
+$("zin").onclick=()=>{const r=map.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,1.5);};
+$("zout").onclick=()=>{const r=map.getBoundingClientRect();zoomAt(r.left+r.width/2,r.top+r.height/2,1/1.5);};
+$("zhome").onclick=()=>setVB(HOME);
+function flyTo(p,zoomW){
+  const w=zoomW||Math.min(st.vb[2],240),h=w*1.25;
+  const panelOffset=window.innerWidth>=820?-w*0.18:0;
+  const yOff=window.innerWidth<820?h*0.27:0;
+  let t0=performance.now(),from=st.vb.slice(),to=[p.pos[0]-w/2-panelOffset*-1*0,p.pos[1]-h/2+yOff,w,h];
+  if(window.innerWidth>=820)to[0]=p.pos[0]-w/2+w*0.18;
+  (function step(t){const k=Math.min(1,(t-t0)/380),e=1-Math.pow(1-k,3);setVB(from.map((v,i)=>v+(to[i]-v)*e));if(k<1)requestAnimationFrame(step);})(t0);
+}
+
+/* ---------- panel ---------- */
+function esc(s){return s.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));}
+function select(id,fly){
+  const p=PLACES.find(x=>x.id===id);if(!p)return;
+  Object.values(pinEls).forEach(g=>g.classList.remove("sel"));pinEls[id].classList.add("sel");st.sel=id;
+  $("pt").textContent=p.he;$("pe").textContent=p.name+" · "+p.region;
+  $("ptags").innerHTML=p.cats.map(c=>`<span class="tag" style="border-color:${CAT[c][1]}">${CAT[c][0]}</span>`).join("")+
+    `<span class="tag ${p.conf}">${CONF[p.conf]}</span>`+
+    `<span class="tag">${p.ch?"מפרק "+p.ch+" · "+CHAPTERS[p.ch]:"פרק לא ידוע"}</span>`;
+  let h="<h3>מה מקבלים</h3><ul>"+p.reward.map(r=>"<li>"+esc(r)+"</li>").join("")+"</ul>";
+  h+="<h3>איך משיגים, צעד אחר צעד</h3><ol>"+p.steps.map(s=>"<li>"+esc(s)+"</li>").join("")+"</ol>";
+  h+="<h3>דרישות</h3><div>"+esc(p.needs)+"</div>";
+  if(p.notes)h+=`<div class="warn">${esc(p.notes)}</div>`;
+  h+=`<h3>מקורות</h3><div class="src">`+p.src.map(k=>`<div><a href="${SRC[k][1]}" target="_blank" rel="noopener">${SRC[k][0]}</a></div>`).join("")+"</div>";
+  $("pb").innerHTML=h;$("panel").scrollTop=0;$("panel").classList.add("open");
+  $("list").classList.remove("open");
+  updLabels();
+  if(fly)flyTo(p);
+}
+function closePanel(){$("panel").classList.remove("open");st.sel=null;Object.values(pinEls).forEach(g=>g.classList.remove("sel"));updLabels();}
+$("close").onclick=closePanel;
+
+/* ---------- list ---------- */
+function buildList(){
+  const v=PLACES.filter(visible);
+  $("items").innerHTML=v.length?v.map(p=>`<button class="item" data-id="${p.id}"><b>${esc(p.he)}</b> <span>· ${esc(p.region)}</span><br>${p.cats.map(c=>`<span class="dot" style="background:${CAT[c][1]}"></span> <span>${CAT[c][0]}</span>`).join(" &nbsp; ")} <span>· ${p.ch?"פרק "+p.ch:"פרק לא ידוע"} · ${CONF[p.conf]}</span></button>`).join(""):'<div class="empty">אין מקומות בסינון הזה</div>';
+  $("items").querySelectorAll(".item").forEach(b=>b.onclick=()=>{select(b.dataset.id,true);});
+}
+$("listbtn").onclick=()=>{buildList();$("list").classList.add("open");};
+$("listclose").onclick=()=>$("list").classList.remove("open");
+
+/* ---------- filters ---------- */
+function buildFilters(){
+  const cr=$("chRow");cr.innerHTML='<span class="lbl">פרק:</span>';
+  const mk=(txt,v)=>{const b=document.createElement("button");b.className="chip"+(st.ch===v?" on":"");b.textContent=txt;b.onclick=()=>{st.ch=v;buildFilters();applyFilter();};cr.appendChild(b);};
+  mk("הכל",0);for(let i=1;i<=5;i++)mk("עד פרק "+i,i);
+  const kr=$("catRow");kr.innerHTML='<span class="lbl">סוג:</span>';
+  Object.keys(CAT).forEach(c=>{const b=document.createElement("button");const on=st.cats.has(c);b.className="chip cat"+(on?" on":"");if(on){b.style.background=CAT[c][1];b.style.borderColor=CAT[c][1];}b.innerHTML=`<span class="dot" style="background:${CAT[c][1]}"></span>${CAT[c][0]}`;b.onclick=()=>{on?st.cats.delete(c):st.cats.add(c);buildFilters();applyFilter();};kr.appendChild(b);});
+  const s=document.createElement("input");s.id="search";s.placeholder="חיפוש…";s.value=st.q;s.oninput=()=>{st.q=s.value.trim();applyFilter();};kr.appendChild(s);
+  $("sub").textContent=st.ch?("עד פרק "+st.ch):"כל הפרקים";
+}
+buildFilters();buildPins();setVB(HOME);
+const h=location.hash.slice(1);if(h&&PLACES.some(p=>p.id===h))setTimeout(()=>select(h,true),200);
+window.addEventListener("resize",()=>setVB(st.vb));
+})();
+</script>
+</body>
+</html>
