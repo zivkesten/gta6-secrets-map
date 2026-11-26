@@ -25,7 +25,7 @@ window.SRC = {
 window.PLACES = [
   {
     id: "vespucci", name: "Vespucci Mansion", he: "אחוזת וספוצ'י", region: "Vespucci Island, Vice City",
-    cats: ["weapon", "vehicle", "money"], ch: 1, conf: "multi", pos: [838, 688], star: true,
+    cats: ["weapon", "vehicle", "money"], ch: 1, conf: "multi", pos: [1075, 922], star: true,
     reward: ["נשק אגדי: Kingpin Heathen (רובה סער, ירי בצרורות של 3, 5.56) + ציוד מגן", "2 כספות, בערך $9,000 עד $11,000 מזומן (המקורות לא מסכימים על הסכום המדויק)", "רכב חינם: Progen Royal Ruby Emerus (על-רכב אדום, אין מפתח)"],
     steps: [
       "הגיעו לאי: מ-Vice City נוסעים מזרחה על גשר Rialto Causeway. Vespucci הוא האי האמצעי (סגלגל) מבין שלושת איי Rialto. האחוזה בפינה הדרום-מערבית, יש סמן צהוב של שוד כשמתקרבים. רמת אבטחה גבוהה. מונית או Ryde Me קלים יותר מרכב משלכם.",
@@ -42,7 +42,7 @@ window.PLACES = [
   },
   {
     id: "casa", name: "Casa Guardia", he: "קאסה גווארדיה", region: "Little Cuba, Vice City",
-    cats: ["weapon", "money"], ch: 1, conf: "disputed", pos: [746, 738],
+    cats: ["weapon", "money"], ch: 1, conf: "disputed", pos: [935, 975],
     reward: ["נשק ייחודי: Guardia Brothers FRA (רובה)", "כספת עם מזומן וסמים למכירה, לפעמים שעון יוקרה"],
     steps: [
       "המיקום: צפון-מזרח Little Cuba. MissionPassed כותב 'האזור לא מאושר', SweatSchool מציב אותו בצפון-מזרח Little Cuba, לכן הסמן כאן משוער.",
@@ -56,7 +56,7 @@ window.PLACES = [
   },
   {
     id: "starfish", name: "Starfish Island mansion garage", he: "מוסך האחוזה ב-Starfish Island", region: "Starfish Island, Vice City",
-    cats: ["vehicle"], ch: 3, conf: "single", pos: [800, 655],
+    cats: ["vehicle"], ch: 3, conf: "single", pos: [1070, 970],
     reward: ["Benefactor Dubsta (רכב שטח בסגנון G-Wagon), הכי קל להחזיק, יש לו רק גשש רגיל"],
     steps: [
       "מ-Waxman Island נכנסים לכביש של Starfish Island עד הסיבוב בקצה הצפון-מזרחי, ונכנסים בחניה עם הלולאה הקטנה ליד הבית הגדול על המים.",
@@ -68,7 +68,7 @@ window.PLACES = [
   },
   {
     id: "cheetah", name: "1010 Cheetah (Southside Storage)", he: "1010 Cheetah", region: "Vice-Dale County",
-    cats: ["vehicle"], ch: null, conf: "single", pos: [757, 802],
+    cats: ["vehicle"], ch: null, conf: "single", pos: [850, 980],
     reward: ["Grotti 1010 Cheetah ייחודי + המוסך Southside Storage בחינם"],
     steps: [
       "מוצאים את כל 5 הציורים (1010 Murals).",
@@ -79,7 +79,7 @@ window.PLACES = [
   },
   {
     id: "gauntlet", name: "Driveshaft Gauntlet ('Dom's Charger')", he: "Driveshaft Gauntlet", region: "Grayson, Lummox County",
-    cats: ["vehicle"], ch: 1, conf: "single", pos: [486, 306],
+    cats: ["vehicle"], ch: 1, conf: "single", pos: [385, 350],
     reward: ["Bravado Driveshaft Gauntlet: מאסל קאר מוגדש מקופרץ, כחול בהיר חלוד, כבוד ל-Dom Toretto"],
     steps: [
       "נוסעים ל-Grayson בצפון Lummox County ומחפשים מאחורי הבתים ליד Pay 'n' Spray, תחנת הדלק והמסילה.",
@@ -91,7 +91,7 @@ window.PLACES = [
   },
   {
     id: "lapwing", name: "Lapwing Stolen Valor 300-H (hangar)", he: "מטוס Lapwing ב-Bobcat Key", region: "Bobcat Key, Mariana County",
-    cats: ["vehicle"], ch: null, conf: "single", pos: [336, 842],
+    cats: ["vehicle"], ch: null, conf: "single", pos: [450, 1210],
     reward: ["מטוס Lapwing Stolen Valor 300-H בהאנגר, לא נעול וללא אזעקה"],
     steps: ["מצאו את ההאנגר ב-Bobcat Key (המדריך אינו נותן דרך מדויקת).", "הרכב פתוח, ללא אזעקה, ואינו נספר בשום 100%."],
     needs: "המקור לא מציין פרק. מקור יחיד (Leonida Hub, דרך GTA6 Collectibles Map).",
@@ -99,7 +99,7 @@ window.PLACES = [
   },
   {
     id: "parkland", name: "Declasse Ghosts Exposed Parkland (Halloween house)", he: "Parkland בבית ה-Halloween", region: "South of Capri, Lake Tortoise",
-    cats: ["vehicle"], ch: null, conf: "single", pos: [388, 872],
+    cats: ["vehicle"], ch: null, conf: "single", pos: [420, 1075],
     reward: ["Declasse Ghosts Exposed Parkland ליד בית מקושט לליל כל הקדושים"],
     steps: ["בית ה-Halloween דרומית ל-Capri, ליד Lake Tortoise.", "ללא אזעקה, ללא פתיחה נדרשת."],
     needs: "המקור לא מציין פרק. מקור יחיד.",
@@ -107,7 +107,7 @@ window.PLACES = [
   },
   {
     id: "assassin", name: "Assassin Nipper .38 (wreck)", he: "Assassin Nipper .38", region: "Permit Keys",
-    cats: ["weapon"], ch: 1, conf: "multi", pos: [382, 1100],
+    cats: ["weapon"], ch: 1, conf: "multi", pos: [490, 1575],
     reward: ["אקדח מושתק ייחודי Assassin Nipper .38"],
     steps: [
       "לוקחים סירה מ-Key Lento דרום-מערב לכיוון Maroon Key, ואז מערבה.",
@@ -120,7 +120,7 @@ window.PLACES = [
   },
   {
     id: "smuggler", name: "Smuggler Gorse 425", he: "Smuggler Gorse 425", region: "Northernmost Permit Keys island",
-    cats: ["weapon"], ch: 1, conf: "multi", pos: [402, 1074],
+    cats: ["weapon"], ch: 1, conf: "multi", pos: [470, 1550],
     reward: ["שוטגן Gorse 425 'Smuggler' על החול ליד סירה"],
     steps: ["בטיול הסירה לאותו אזור, האי הצפוני ביותר ב-Permit Keys.", "סירה מוטה על החוף, השוטגן בחול לידה. בלילה כדאי פנס."],
     needs: "סירה.",
@@ -128,7 +128,7 @@ window.PLACES = [
   },
   {
     id: "crab", name: "Crab research outpost", he: "מעבדת הסרטנים (Crabshack VF5)", region: "SW Pelican Valley, Mariana County",
-    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [452, 934],
+    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [665, 1425],
     reward: ["SMG ייחודי Crabshack VF5", "שק שטרות מסומנים של $10,000 בבית הסירות, וכספת עם כ-$1,070"],
     steps: [
       "מוצאים את התחנה הנטושה בדרום-מערב Pelican Valley, צפונית למפתחות. הגעה בסירה.",
@@ -142,7 +142,7 @@ window.PLACES = [
   },
   {
     id: "griffin", name: "Griffin RV bunker", he: "בונקר ה-RV ליד Griffin", region: "Balsero, near Griffin Shooting Range",
-    cats: ["weapon"], ch: 1, conf: "disputed", pos: [432, 790],
+    cats: ["weapon"], ch: 1, conf: "disputed", pos: [790, 885],
     reward: ["מקלע-אקדח Conspiracist Type 9", "משגר רקטות Hauners H-AT עם 4 רקטות, רימונים ותחמושת"],
     steps: [
       "מוצאים את מגרש הקרוואנים ליד שדה הירי Griffin.",
@@ -155,7 +155,7 @@ window.PLACES = [
   },
   {
     id: "swamp", name: "Pelican Valley swamp shack", he: "צריף הביצה (Pelican Valley)", region: "Pelican Valley, Mariana County",
-    cats: ["weapon"], ch: 1, conf: "multi", pos: [472, 906],
+    cats: ["weapon"], ch: 1, conf: "multi", pos: [730, 1385],
     reward: ["Akulus 'Swamp Bait' (אקדח כבד)", "רובה צלפים SM-69 'Cruel Huntsman's' על הסיפון האחורי"],
     steps: ["הגעה הכי קלה בסירה, דרום Hamlet.", "בתוך הצריף על הרצפה: האקדח. על המרפסת האחורית ליד פגרים: הצלפים."],
     needs: "מומלץ סירה.",
@@ -164,7 +164,7 @@ window.PLACES = [
   },
   {
     id: "manatee", name: "Manatee Motel", he: "מוטל Manatee (הנמר)", region: "Gullet Marsh, south of Hamlet",
-    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [506, 890],
+    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [790, 1400],
     reward: ["צלף Laird 350 'Kingfishers' במארז", "כספת עם כסף וקוקאין"],
     steps: ["דרום-מערב Hamlet, צפונית ל-Shoeless Keys. הולכים אחרי היריות והצרחות, נמר משתולל בפנים.", "לוקחים את הרובה מהחדר השני לפני שיוצאים: מדריך אחד מזהיר שהחדר עלול להינעל לתמיד."],
     needs: "אין.",
@@ -172,7 +172,7 @@ window.PLACES = [
   },
   {
     id: "kingfishers", name: "Kingfishers fishing shacks", he: "צריפי הדייג של Kingfishers", region: "Wetman Bay, Mariana County",
-    cats: ["weapon", "money"], ch: 1, conf: "disputed", pos: [612, 922],
+    cats: ["weapon", "money"], ch: 1, conf: "disputed", pos: [600, 1345],
     reward: ["רובה W-22 'Kingfishers' עם כוונת ומשתיק", "כסף וסמים"],
     steps: ["הגעה בסירה, מוגן, אפשר להתגנב או להילחם.", "הרובה במארז בצריף המואר."],
     needs: "מדריך אחד אומר שהמקום נפתח רק אחרי ש-Donnie מספר על המשימה.",
@@ -181,7 +181,7 @@ window.PLACES = [
   },
   {
     id: "shed", name: "The screaming shed (Hamlet)", he: "המחסן הצורח", region: "Southern Hamlet",
-    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [522, 872],
+    cats: ["weapon", "money"], ch: 1, conf: "multi", pos: [780, 1350],
     reward: ["שוטגן Hobo 'Marabunta Grande'", "כסף פזור על שולחן וקופסת כלים צהובה"],
     steps: ["ליד הכביש המהיר בדרום Hamlet, הולכים אחרי הצרחות למחסן באזור תעשייה.", "מארז עם השוטגן, כסף על השולחן ועוד בקופסה הצהובה."],
     needs: "אין. שלושה מדריכים מדווחים.",
@@ -189,7 +189,7 @@ window.PLACES = [
   },
   {
     id: "apollo", name: "Apollo Aggregates warehouse", he: "מחסן Apollo Aggregates", region: "East of Hamlet",
-    cats: ["money"], ch: 1, conf: "disputed", pos: [566, 838],
+    cats: ["money"], ch: 1, conf: "disputed", pos: [880, 1320],
     reward: ["בערך $12,700 עד $14,400 בסמים ושטרות מסומנים (תלוי מדריך)", "כרטיס אספנות Leroy Rook, כ-$6,000 בחנות משכון"],
     steps: ["מחסן אדום ממזרח ל-Hamlet ליד הכביש המהיר. פורצים את הדלת האפורה הצדדית.", "בפנים: שק שטרות מסומנים, קוקאין, וכספת משרד עם הכרטיס. אפשר גם בלי להילחם, לפי מדריך.", "מוכרים לקונים (Donnie או Brian). ההצעות נבדלות: $14,400 מול $12,720."],
     needs: "מדריך אחד אומר שאפשר בלי לסיים אף משימה.",
@@ -198,7 +198,7 @@ window.PLACES = [
   },
   {
     id: "parrot", name: "Three Sheets Liquor parrot stash", he: "מחסן התוכי (Three Sheets Liquor)", region: "Key Lento",
-    cats: ["money"], ch: 1, conf: "multi", pos: [474, 1056],
+    cats: ["money"], ch: 1, conf: "multi", pos: [800, 1530],
     reward: ["כ-$2,000 מזומן: $1,000 עד $1,400 בפתח אוורור, כספת קטנה כ-$900 עד $1,000"],
     steps: ["בסמטה מימין לחנות עוברים דרך פרצה בגדר רשת לחצר החיות.", "מנקים את הבריונים, מדברים עם התוכי האדום בסוף, והוא מכוון למחולל החשמל.", "מכסה האוורור ליד המחולל וכספת קטנה."],
     needs: "מדריך אחד: נפתח אחרי שמביאים ל-Shirley את הרום ('Get Shirley's Rum'). אחר: פתוח מההתחלה. עשו את המשימה קודם לביטחון.",
@@ -206,7 +206,7 @@ window.PLACES = [
   },
   {
     id: "lento", name: "Key Lento stilt house", he: "בית על כלונסאות (Key Lento)", region: "NW Key Lento",
-    cats: ["weapon"], ch: 1, conf: "multi", pos: [452, 1038],
+    cats: ["weapon"], ch: 1, conf: "multi", pos: [855, 1470],
     reward: ["שוטגן Comshot 12 'Unpacked'"],
     steps: ["צפון-מערב Key Lento ליד ה-Mini Mart. מדרגות חיצוניות לקומה העליונה, חדר אחורי / שירותי הקומה העליונה."],
     needs: "אין.",
@@ -214,7 +214,7 @@ window.PLACES = [
   },
   {
     id: "paraglider", name: "Crashed paraglider (Bobcat Bight)", he: "מצנח ממונע תקוע בעץ", region: "Bobcat Bight, Mariana County",
-    cats: ["weapon"], ch: 1, conf: "multi", pos: [350, 806],
+    cats: ["weapon"], ch: 1, conf: "multi", pos: [480, 1255],
     reward: ["אקדח Turnt Nipper .38"],
     steps: ["מצנח תקוע בעץ בחוף המערבי של Mariana County.", "יורים בחבלים והאקדח נופל, מחפשים על הקרקע."],
     needs: "אין.",
@@ -222,7 +222,7 @@ window.PLACES = [
   },
   {
     id: "sunrise", name: "Sunrise Motel garage / Tequesta storage", he: "מוסך מוטל Sunrise (Tequesta)", region: "Tequesta, Vice-Dale County",
-    cats: ["weapon"], ch: 1, conf: "disputed", pos: [792, 612],
+    cats: ["weapon"], ch: 1, conf: "disputed", pos: [935, 1125],
     reward: ["משגר רימונים GLR40", "קרבין Xtreme 556 'Cockroach'", "לפי GTA Bay גם Kalinga .50, שריון גוף וכספת"],
     steps: ["במוסך של מוטל Sunrise ב-Tequesta (או יחידת אחסון מול חדר הכושר של Vice Seven Condominiums, לפי מדריך אחר).", "הנשקים מאחורי ערימת נייר טואלט."],
     needs: "אין. נמצא פתוח.",
@@ -231,7 +231,7 @@ window.PLACES = [
   },
   {
     id: "brooks", name: "Brooks Boatworks (Kolt & Associates)", he: "Brooks Boatworks", region: "Port Gellhorn",
-    cats: ["weapon", "money"], ch: 2, conf: "multi", pos: [318, 632],
+    cats: ["weapon", "money"], ch: 2, conf: "multi", pos: [430, 670],
     reward: ["קרבין ייחודי Clunker 556", "כסף וגלולות"],
     steps: ["נפתח אחרי המשימה Slam Dunk. מקפלים את המפה על הקיר במשרד: חושפת גם Kingpin Bowling ו-La Cascara Motel.", "מתגנבים מהצד, מנקים שומרים, לוקחים את המארז ליד השולחן במשרד שמול המחסן הגדול.", "קוד הכספת של המחסן כתוב על מפת הקיר (המקור חתך את הקוד, לא אימתתי)."],
     needs: "פרק 2, אחרי Slam Dunk.",
@@ -239,7 +239,7 @@ window.PLACES = [
   },
   {
     id: "lmg", name: "Mercenary LMG 6 (Scoop container)", he: "מקלע Mercenary LMG 6", region: "Port Vice City",
-    cats: ["weapon"], ch: 3, conf: "disputed", pos: [770, 778],
+    cats: ["weapon"], ch: 3, conf: "disputed", pos: [1105, 1040],
     reward: ["מקלע ייחודי Mercenary LMG 6 במכולת Scoop"],
     steps: ["במכולת Scoop צהובה/כתומה באזור המטענים של Port Vice City, ליד המים. GamerHour: מכולה בלויה מסומנת PCNU 623405, מתחת למכולות Bilgeco, סולם בקיר המזח.", "דרוש כלי חיתוך מנעולים, מגיע בפרק 3."],
     needs: "כלי חיתוך מנעולים מפרק 3.",
@@ -248,7 +248,7 @@ window.PLACES = [
   },
   {
     id: "cooties", name: "Bae-Luxe's Cooties bat", he: "Cooties (המחבט של Bae-Luxe)", region: "Crosstown, Vice City",
-    cats: ["weapon"], ch: 3, conf: "single", pos: [772, 702],
+    cats: ["weapon"], ch: 3, conf: "single", pos: [960, 945],
     reward: ["מחבט ייחודי Cooties"],
     steps: ["פרס על סיום המשימה Cooties ב-Crosstown (פרק 3)."],
     needs: "לסיים את המשימה Cooties (פרק 3). מקור יחיד (Game Checklists דרך SweatSchool).",
@@ -256,7 +256,7 @@ window.PLACES = [
   },
   {
     id: "pete", name: "Pete's KZ-59 (Sundown Airfield)", he: "Pete's KZ-59", region: "Sundown Private Airfield, Leonard County",
-    cats: ["weapon"], ch: 4, conf: "single", pos: [690, 320],
+    cats: ["weapon"], ch: 4, conf: "single", pos: [855, 795],
     reward: ["רובה Pete's KZ-59, רק ל-Jason"],
     steps: ["במשימה Pilot Pete בשדה התעופה Sundown, נכנסים בדלת האדומה ולוקחים מהשולחן בחדר."],
     needs: "פרק 4, רק Jason. מקור יחיד.",
@@ -264,7 +264,7 @@ window.PLACES = [
   },
   {
     id: "photoshoot", name: "Photo/Shoot (Tequesta)", he: "אקדחי W-10 ורודים (Photo/Shoot)", region: "Tequesta high-rise",
-    cats: ["weapon", "money"], ch: 4, conf: "single", pos: [802, 628],
+    cats: ["weapon", "money"], ch: 4, conf: "single", pos: [920, 1105],
     reward: ["Bae-Luxe's W-10 + Roxy's W-10 (מקלעי-אקדח ייחודיים) + $6,000"],
     steps: ["משימה ראשית בפרק 4, Photo/Shoot, נפתחת אחרי Party Hard (Dre'Quan נותן).", "סיום המשימה מעניק את שני ה-W-10 ו-$6,000."],
     needs: "פרק 4, אחרי Party Hard. מקור יחיד.",
@@ -272,7 +272,7 @@ window.PLACES = [
   },
   {
     id: "biker", name: "Biker Hideout (Final Chapter gang)", he: "מועדון האופנוענים (Final Chapter)", region: "Behind The Thirsty Wolf, Ambrosia",
-    cats: ["weapon", "money", "vehicle"], ch: null, conf: "multi", pos: [602, 482],
+    cats: ["weapon", "money", "vehicle"], ch: null, conf: "multi", pos: [770, 585],
     reward: ["אקדח ייחודי Ride Free H&L .38", "כספת עם קוד 1982 (הקוד על תלייה של Final Chapter)", "אופנוע סגול שאפשר לצאת עליו"],
     steps: ["המועדון מאחורי הבר The Thirsty Wolf, צפון-מערב Belleville. נכנסים בשער הפתוח מימין ומנקים את החצר.", "דלת צד ירוקה פנימה. הרוולבר במארז מתחת לתלייה. הקוד 1982 לכספת הגבוהה ליד הספה.", "יוצאים על האופנוע הסגול במוסך הפתוח."],
     needs: "נפתח בהודעה מ-Vicki אחרי Afternoon Delight. המקור לא מציין פרק.",
@@ -281,7 +281,7 @@ window.PLACES = [
   },
   {
     id: "alien", name: "Alien lab, South Point Airfield", he: "מעבדת החייזרים", region: "South Point Airfield, Hamlet",
-    cats: ["secret"], ch: 2, conf: "single", pos: [542, 856],
+    cats: ["secret"], ch: 2, conf: "single", pos: [860, 1385],
     reward: ["שחרור החייזר (תעלומת ה-UFO)"],
     steps: ["אחרי חטיפת ה-UFO: מטפסים על הגדר משמאל, סולם וצוהר בגג בניין מגדל הרדיו.", "מקישים את הקוד מהחלום (בדרך כלל 2134) ויורדים במעלית."],
     needs: "קודם החטיפה: בלילה בכביש עפר ממזרח ל-Port Gellhorn ליד Starlet Motel, אחרי פרק 1 לפי מדריך אחד.",
@@ -289,7 +289,7 @@ window.PLACES = [
   },
   {
     id: "ufo", name: "UFO road", he: "כביש ה-UFO", region: "East of Port Gellhorn, near Starlet Motel",
-    cats: ["secret"], ch: 2, conf: "single", pos: [372, 646],
+    cats: ["secret"], ch: 2, conf: "single", pos: [510, 700],
     reward: ["חטיפה וגביע 'The Truth Is Out There'"],
     steps: ["כביש עפר ממזרח ל-Port Gellhorn ליד Starlet Motel, בלילה."],
     needs: "אחרי פרק 1 (מקור יחיד, VGTimes דרך GTA6 Collectibles Map).",
@@ -297,7 +297,7 @@ window.PLACES = [
   },
   {
     id: "tank", name: "Rhino tank, Mile Zero Air Station", he: "טנק Rhino", region: "Mile Zero Air Station, Leonida Keys",
-    cats: ["vehicle", "secret"], ch: null, conf: "single", pos: [332, 1124],
+    cats: ["vehicle", "secret"], ch: null, conf: "single", pos: [330, 1610],
     reward: ["טנק Rhino מההאנגרים הדרומיים, פותח גביע 'Challenging Tank'"],
     steps: ["גונבים את הטנק מההאנגרים בדרום התחנה.", "שלושה כוכבי מבוקש ברגע שנכנסים אליו."],
     needs: "המקור לא מציין פרק (Games.gg דרך GTA6 Collectibles Map).",
@@ -305,7 +305,7 @@ window.PLACES = [
   },
   {
     id: "bigfoot", name: "Bigfoot, Gullet Marsh", he: "ביגפוט", region: "Gullet Marsh, south of Hamlet",
-    cats: ["secret"], ch: 1, conf: "multi", pos: [508, 872],
+    cats: ["secret"], ch: 1, conf: "multi", pos: [755, 1390],
     reward: ["מפגש עם ביגפוט, חלק משרשרת המשימות של Kirk"],
     steps: ["נוסעים בכביש דרום Hamlet ומחפשים אותו ליד פגר איל.", "רודפים אחריו לביצה עד עץ עטוף ערפל ירוק. נושמים את הערפל: מתעלפים, הוא בא להסתכל, מתעוררים ליד.", "המשימה של Kirk נגמרת בבחירה לירות בו או לשחרר."],
     needs: "אין.",
