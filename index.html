@@ -56,7 +56,9 @@ ul{padding:0 18px 0 0;margin:0}
 #list .top,#near .top{padding:10px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}
 #list .items,#near .items{overflow-y:auto;padding:8px 10px}
 #addr{flex:1;min-width:150px;background:var(--panel);border:1px solid var(--line);border-radius:999px;color:var(--fg);padding:6px 12px;font-size:13px}
-#nearRow{position:relative}
+#nearRow{position:relative;overflow:visible}
+header{position:relative;z-index:20}
+#qRow #search{min-width:0}
 .addr-dd{position:absolute;top:calc(100% + 4px);right:0;left:0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;z-index:9;box-shadow:0 8px 24px rgba(0,0,0,.5)}
 .addr-opt{display:block;width:100%;text-align:right;padding:9px 12px;background:none;border:0;border-bottom:1px solid var(--line);font-size:13px}
 .addr-opt:last-child{border-bottom:0}
@@ -76,6 +78,7 @@ ul{padding:0 18px 0 0;margin:0}
   <h1>מפת הסודות של GTA 6 <small id="sub"></small></h1>
   <div class="row" id="chRow"></div>
   <div class="row" id="catRow"></div>
+  <div class="row" id="qRow"></div>
   <div class="row" id="nearRow">
     <span class="lbl">&#128205;</span>
     <input id="addr" placeholder="כתובת, עיר או אזור במשחק — מה שווה ליד?" autocomplete="off">
@@ -303,7 +306,7 @@ function buildFilters(){
   mk("הכל",0);for(let i=1;i<=5;i++)mk("עד פרק "+i,i);
   const kr=$("catRow");kr.innerHTML='<span class="lbl">סוג:</span>';
   Object.keys(CAT).forEach(c=>{const b=document.createElement("button");const on=st.cats.has(c);b.className="chip cat"+(on?" on":"");if(on){b.style.background=CAT[c][1];b.style.borderColor=CAT[c][1];}b.innerHTML=`<span class="dot" style="background:${CAT[c][1]}"></span>${CAT[c][0]}`;b.onclick=()=>{on?st.cats.delete(c):st.cats.add(c);buildFilters();applyFilter();};kr.appendChild(b);});
-  const s=document.createElement("input");s.id="search";s.placeholder="חיפוש…";s.value=st.q;s.oninput=()=>{st.q=s.value.trim();applyFilter();};kr.appendChild(s);
+  const s=document.createElement("input");s.id="search";s.placeholder="חיפוש…";s.value=st.q;s.oninput=()=>{st.q=s.value.trim();applyFilter();};$("qRow").innerHTML="";$("qRow").appendChild(s);
   $("sub").textContent=st.ch?("עד פרק "+st.ch):"כל הפרקים";
 }
 /* ---------- nearby search: type an address / town / area, get the worthwhile places around it ---------- */
